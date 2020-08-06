@@ -134,7 +134,6 @@ CONFIG_DEFAULT_libustream-openssl=y
 CONFIG_DEFAULT_logd=y
 CONFIG_DEFAULT_luci=y
 CONFIG_DEFAULT_luci-app-accesscontrol=y
-CONFIG_DEFAULT_luci-app-adbyby-plus=y
 CONFIG_DEFAULT_luci-app-arpbind=y
 CONFIG_DEFAULT_luci-app-autoreboot=y
 CONFIG_DEFAULT_luci-app-cpufreq=y
@@ -2001,7 +2000,8 @@ CONFIG_PACKAGE_kmod-fs-antfs=y
 # CONFIG_PACKAGE_kmod-fs-cifs is not set
 # CONFIG_PACKAGE_kmod-fs-configfs is not set
 # CONFIG_PACKAGE_kmod-fs-cramfs is not set
-CONFIG_PACKAGE_kmod-fs-exfat0=y
+CONFIG_PACKAGE_kmod-fs-exfat=y
+# CONFIG_PACKAGE_kmod-fs-exfat0 is not set
 # CONFIG_PACKAGE_kmod-fs-exportfs is not set
 CONFIG_PACKAGE_kmod-fs-ext4=y
 # CONFIG_PACKAGE_kmod-fs-f2fs is not set
@@ -2641,7 +2641,6 @@ CONFIG_PACKAGE_MAC80211_MESH=y
 # CONFIG_PACKAGE_kmod-mt76 is not set
 # CONFIG_PACKAGE_kmod-mt7601u is not set
 # CONFIG_PACKAGE_kmod-mt7603 is not set
-# CONFIG_PACKAGE_kmod-mt7603e is not set
 # CONFIG_PACKAGE_kmod-mt7615-firmware is not set
 # CONFIG_PACKAGE_kmod-mt7615e is not set
 # CONFIG_PACKAGE_kmod-mt7663-firmware-ap is not set
@@ -2650,7 +2649,6 @@ CONFIG_PACKAGE_MAC80211_MESH=y
 # CONFIG_PACKAGE_kmod-mt76x0e is not set
 # CONFIG_PACKAGE_kmod-mt76x0u is not set
 # CONFIG_PACKAGE_kmod-mt76x2 is not set
-# CONFIG_PACKAGE_kmod-mt76x2e is not set
 # CONFIG_PACKAGE_kmod-mt76x2u is not set
 # CONFIG_PACKAGE_kmod-mt7915e is not set
 # CONFIG_PACKAGE_kmod-mwifiex-pcie is not set
@@ -3894,8 +3892,7 @@ CONFIG_PACKAGE_libblobmsg-json=y
 # CONFIG_PACKAGE_libbsd is not set
 CONFIG_PACKAGE_libcap=y
 # CONFIG_PACKAGE_libcap-bin is not set
-CONFIG_PACKAGE_libcap-ng=y
-# CONFIG_PACKAGE_libcap-ng-bin is not set
+# CONFIG_PACKAGE_libcap-ng is not set
 CONFIG_PACKAGE_libcares=y
 # CONFIG_PACKAGE_libcgroup is not set
 # CONFIG_PACKAGE_libcharset is not set
@@ -4368,7 +4365,7 @@ CONFIG_PACKAGE_luci-mod-admin-full=y
 #
 CONFIG_PACKAGE_luci-app-accesscontrol=y
 # CONFIG_PACKAGE_luci-app-adblock is not set
-CONFIG_PACKAGE_luci-app-adbyby-plus=y
+# CONFIG_PACKAGE_luci-app-adbyby-plus is not set
 # CONFIG_PACKAGE_luci-app-advanced-reboot is not set
 # CONFIG_PACKAGE_luci-app-ahcp is not set
 # CONFIG_PACKAGE_luci-app-airplay2 is not set
@@ -4559,7 +4556,6 @@ CONFIG_PACKAGE_luci-lib-nixio=y
 
 CONFIG_PACKAGE_default-settings=y
 CONFIG_PACKAGE_luci-i18n-accesscontrol-zh-cn=y
-CONFIG_PACKAGE_luci-i18n-adbyby-plus-zh-cn=y
 # CONFIG_PACKAGE_luci-i18n-aria2-pt-br is not set
 # CONFIG_PACKAGE_luci-i18n-aria2-ru is not set
 # CONFIG_PACKAGE_luci-i18n-aria2-sv is not set
@@ -5020,6 +5016,7 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 # CONFIG_PACKAGE_iptgeoip is not set
 # CONFIG_PACKAGE_miniupnpc is not set
 CONFIG_PACKAGE_miniupnpd=y
+# CONFIG_MINIUPNPD_IGDv2 is not set
 # CONFIG_PACKAGE_natpmpc is not set
 # CONFIG_PACKAGE_nftables-json is not set
 # CONFIG_PACKAGE_nftables-nojson is not set
@@ -5794,7 +5791,7 @@ CONFIG_PACKAGE_wpad-openssl=y
 # CONFIG_PACKAGE_acme is not set
 # CONFIG_PACKAGE_acme-dnsapi is not set
 # CONFIG_PACKAGE_adblock is not set
-CONFIG_PACKAGE_adbyby=y
+# CONFIG_PACKAGE_adbyby is not set
 # CONFIG_PACKAGE_addrwatch is not set
 # CONFIG_PACKAGE_ahcpd is not set
 # CONFIG_PACKAGE_alfred is not set
@@ -6707,3 +6704,5 @@ CONFIG_PACKAGE_ubi-utils=y
 # CONFIG_PACKAGE_fontconfig is not set
 # end of Font-Utils
 # end of Xorg
+
+CONFIG_OVERRIDE_PKGS="wget"
