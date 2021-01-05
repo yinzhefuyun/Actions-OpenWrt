@@ -23,8 +23,6 @@ on:
       - main
     paths:
       - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
 #  watch:
 #    types: started
 
@@ -193,7 +191,7 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: ActionsRML/delete-workflow-runs@main
+      uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 3650
         keep_minimum_runs: 520
