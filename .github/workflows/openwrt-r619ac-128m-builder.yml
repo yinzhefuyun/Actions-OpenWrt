@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt RT-AC58U Builder
+name: OpenWrt R619AC-128M Builder
 
 on:
   repository_dispatch:
