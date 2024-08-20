@@ -118,7 +118,9 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
+        echo "config.buildinfo"
         cat config.buildinfo
+        echo "profiles.json"
         cat profiles.json
 
     - name: Upload firmware directory
