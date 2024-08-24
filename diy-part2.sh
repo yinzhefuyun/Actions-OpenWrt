@@ -18,3 +18,8 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+
+#print .config config file
+grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+[ -s DEVICE_NAME ] && echo "# $(date +"%Y%m%d%H%M") $(cat DEVICE_NAME) .config"
+cat .config
