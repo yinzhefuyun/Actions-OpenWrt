@@ -16,10 +16,10 @@ env:
   REPO_URL: https://github.com/fw876/helloworld
   REPO_BRANCH: master
 
-on:
+于:
   workflow_dispatch:
-  schedule:
-    - cron: 0 16 * * 5
+#  schedule:
+#    - cron: 0 16 * * 5
 
 jobs:
   check:
