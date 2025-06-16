@@ -1,0 +1,4 @@
+cd lede && git pull && ./scripts/feeds update -a && ./scripts/feeds install -a
+
+
+改完turboacc成sfe后搜索kmod-fast-classifier，编译完成ssh 假如输入echo "fast-classifier" > /etc/modules.d/15-fast-classifier
