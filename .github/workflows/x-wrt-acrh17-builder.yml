@@ -2,7 +2,7 @@
 # https://github.com/P3TERX/Actions-x-wrt
 #
 # File: .github/workflows/x-wrt-bulder.yml
-# Description: Build x-wrt using GitHub Actions
+# Description: Build X-wrt using GitHub Actions
 #
 # Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
 #
@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: x-wrt RT-ACRH17 Builder
+name: X-wrt RT-ACRH17 Builder
 
 on:
   repository_dispatch:
