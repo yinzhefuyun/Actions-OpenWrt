@@ -23,6 +23,7 @@ env:
   CONFIG_FILE: .config.acrh17
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
+  PLATFORM_SH: platform_5.10.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -74,6 +75,7 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e $PLATFORM_SH ] && mv $PLATFORM_SH openwrt/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
