@@ -63,9 +63,9 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        cat $GITHUB_WORKSPACE/kmod-xdp-sockets-diag/xdp-sockets-diag_support.mk >> package/kernel/linux/modules/netsupport.mk
         chmod +x $DIY_P1_SH
         cd openwrt
+        cat $GITHUB_WORKSPACE/kmod-xdp-sockets-diag/xdp-sockets-diag_support.mk >> package/kernel/linux/modules/netsupport.mk
         $GITHUB_WORKSPACE/$DIY_P1_SH
         
 
