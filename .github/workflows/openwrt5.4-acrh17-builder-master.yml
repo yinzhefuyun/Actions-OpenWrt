@@ -56,7 +56,10 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- \
+        target/linux/ipq40xx/ \
+        include/kernel-5.4 \
+        target/linux/generic/backport-5.4/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
