@@ -30,7 +30,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -40,6 +40,13 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        sudo apt update
+        sudo apt install -y gpg wget
+        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+        echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main' | sudo tee /etc/apt/sources.list.d/kitware.list
+        sudo apt update
+        sudo apt install kitware-archive-keyring cmake
+        cmake --version
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
