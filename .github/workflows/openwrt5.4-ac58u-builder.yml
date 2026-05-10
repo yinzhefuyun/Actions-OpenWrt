@@ -42,10 +42,6 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
-        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-        echo "deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/kitware.list
-        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
-        sudo docker image prune --all --force
         sudo -E apt-get -qq update
         sudo -E apt-get -qq install ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pyelftools python3-setuptools qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev tree
         sudo -E apt-get -qq autoremove --purge
@@ -71,11 +67,16 @@ jobs:
         cd openwrt
         cat $GITHUB_WORKSPACE/kmod-xdp-sockets-diag/xdp-sockets-diag_support.mk >> package/kernel/linux/modules/netsupport.mk
         $GITHUB_WORKSPACE/$DIY_P1_SH
-        
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a 
 
+    - name: Downgrade CMake version requirement 
+      run: |
+        cd openwrt
+        sed -i 's/cmake_minimum_required(VERSION 3\.31)/cmake_minimum_required(VERSION 3.25)/g' \
+          feeds/luci/libs/rpcd-mod-luci/src/CMakeLists.txt \
+          feeds/luci/libs/rpcd-mod-rrdns/src/CMakeLists.txt
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
