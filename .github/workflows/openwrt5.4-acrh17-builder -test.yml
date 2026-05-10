@@ -40,13 +40,6 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt update
-        sudo apt install -y gpg wget
-        wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
-        echo "deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/kitway.list
-        sudo apt update
-        sudo apt install kitware-archive-keyring cmake
-        cmake --version
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
@@ -78,7 +71,13 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a 
-
+      
+    - name: Downgrade CMake version requirement 
+      run: |
+        cd openwrt
+        sed -i 's/cmake_minimum_required(VERSION 3\.31)/cmake_minimum_required(VERSION 3.25)/g' \
+          feeds/luci/libs/rpcd-mod-luci/src/CMakeLists.txt \
+          feeds/luci/libs/rpcd-mod-rrdns/src/CMakeLists.txt
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
