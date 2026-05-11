@@ -11,3 +11,7 @@ make menuconfig #主线继续更新，就target/linux/ipq40xx/停留在61d090cdd
 
 
 改完turboacc成sfe后搜索kmod-fast-classifier，编译完成ssh 假如输入echo "fast-classifier" > /etc/modules.d/15-fast-classifier
+
+
+package/kernel/ath10k-ct/
+package/kernel/mac80211/

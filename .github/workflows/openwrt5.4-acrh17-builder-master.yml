@@ -63,6 +63,8 @@ jobs:
         rm -rf target/linux/generic/config-5.4
         rm -rf target/linux/ipq40xx/
         rm -rf include/kernel-5.4
+        rm -rf package/kernel/ath10k-ct/
+        rm -rf package/kernel/mac80211/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/backport-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/files-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/hack-5.4/
@@ -70,6 +72,8 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/config-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
