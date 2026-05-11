@@ -19,7 +19,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  FEEDS_CONF: 5.4.feeds.conf.default
+  FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 5.4.config.r619ac-128m
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
@@ -56,8 +56,20 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        git fetch origin 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed
-        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed
+        rm -rf target/linux/generic/backport-5.4/
+        rm -rf target/linux/generic/files-5.4/
+        rm -rf target/linux/generic/hack-5.4/
+        rm -rf target/linux/generic/pending-5.4/
+        rm -rf target/linux/generic/config-5.4
+        rm -rf target/linux/ipq40xx/
+        rm -rf include/kernel-5.4
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/backport-5.4/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/files-5.4/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/hack-5.4/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/pending-5.4/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/config-5.4
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
@@ -145,7 +157,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$(cat DEVICE_NAME)_5.4_$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
