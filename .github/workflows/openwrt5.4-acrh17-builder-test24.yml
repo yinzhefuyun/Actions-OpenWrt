@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt5.4 RT-ACRH17 Builder Master          
+name: OpenWrt5.4 RT-ACRH17 Builder Ubuntu24          
 
 on:
   repository_dispatch:
