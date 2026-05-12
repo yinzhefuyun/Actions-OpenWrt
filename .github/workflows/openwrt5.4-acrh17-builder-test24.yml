@@ -95,10 +95,10 @@ jobs:
       
     - name: Downgrade CMake version requirement 
       run: |
-        cd openwrt
-        sed -i 's/cmake_minimum_required(VERSION 3\.31)/cmake_minimum_required(VERSION 3.25)/g' \
-          feeds/luci/libs/rpcd-mod-luci/src/CMakeLists.txt \
-          feeds/luci/libs/rpcd-mod-rrdns/src/CMakeLists.txt
+        # cd openwrt
+        # sed -i 's/cmake_minimum_required(VERSION 3\.31)/cmake_minimum_required(VERSION 3.25)/g' \
+        #   feeds/luci/libs/rpcd-mod-luci/src/CMakeLists.txt \
+        #   feeds/luci/libs/rpcd-mod-rrdns/src/CMakeLists.txt
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
