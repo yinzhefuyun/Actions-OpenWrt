@@ -68,7 +68,7 @@ jobs:
         rm -rf target/linux/generic/backport-5.4/
         rm -rf target/linux/generic/files-5.4/
         rm -rf target/linux/generic/hack-5.4/
-        rm -rf target/linux/generic/pending-5.4
+        rm -rf target/linux/generic/pending-5.4/
         rm -rf target/linux/ipq40xx/
         rm -rf include/kernel-5.4
         rm -rf package/kernel/ath10k-ct/
@@ -92,13 +92,6 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a 
-      
-    - name: Downgrade CMake version requirement 
-      run: |
-        # cd openwrt
-        # sed -i 's/cmake_minimum_required(VERSION 3\.31)/cmake_minimum_required(VERSION 3.25)/g' \
-        #   feeds/luci/libs/rpcd-mod-luci/src/CMakeLists.txt \
-        #   feeds/luci/libs/rpcd-mod-rrdns/src/CMakeLists.txt
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
