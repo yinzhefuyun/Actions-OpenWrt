@@ -20,6 +20,6 @@ git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211
 make menuconfig #主线继续更新，就target/linux/ipq40xx/停留在61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed
 
 
-改完turboacc成sfe后搜索kmod-fast-classifier，编译完成ssh 假如输入echo "fast-classifier" > /etc/modules.d/15-fast-classifier
+改完turboacc成sfe后搜索kmod-fast-classifier，//编译完成ssh 假如输入echo "fast-classifier" > /etc/modules.d/15-fast-classifier
 
 
