@@ -87,33 +87,35 @@ jobs:
         
     - name: Fix kmod-crypto-aead geniv build failure
       run: |
-        TARGET_FILE="openwrt/package/kernel/linux/modules/crypto.mk"
-          
-        if [ ! -f "$TARGET_FILE" ]; then
-            echo "::warning::Target file not found, skipping fix."
+          TARGET_FILE="openwrt/package/kernel/linux/modules/crypto.mk"
+
+          if [ ! -f "$TARGET_FILE" ]; then
+            echo "::warning::Target file not found at $TARGET_FILE, skipping fix."
             exit 0
-        fi
+          fi
 
-        echo "Patching $TARGET_FILE to remove built-in geniv.ko reference..."
+          echo "Patching $TARGET_FILE ..."
 
-        sed -i '/define KernelPackage\/crypto-aead/,/endef/{
-            /CONFIG_CRYPTO_GENIV@lt6.6/d
-            /$(LINUX_DIR)\/crypto\/geniv\.ko@lt6.6/d
-        }' "$TARGET_FILE"
-
-        sed -i '/define KernelPackage\/crypto-aead/,/endef/{
-            /KCONFIG:/,/FILES:/{
-                N
-                s/\\\n\(FILES:\)/\n\1/
-                P
-                D
+          # 第一步：去掉将被删除行的前一行末尾的 \
+          sed -i '/define KernelPackage\/crypto-aead/,/endef/{
+            N
+            /CONFIG_CRYPTO_GENIV@lt6\.6\|geniv\.ko@lt6\.6/{
+              s/\\\n/\n/
             }
-        }' "$TARGET_FILE"
+            P
+            D
+          }' "$TARGET_FILE"
 
-        echo "✅ Patch applied. Printing modified crypto-aead block:"
-        echo "==================== START ===================="
-        sed -n '/define KernelPackage\/crypto-aead/,/endef/p' "$TARGET_FILE"
-        echo "===================== END ====================="
+          # 第二步：删除 GENIV 相关行
+          sed -i '/define KernelPackage\/crypto-aead/,/endef/{
+            /CONFIG_CRYPTO_GENIV@lt6\.6/d
+            /geniv\.ko@lt6\.6/d
+          }' "$TARGET_FILE"
+
+          echo "✅ Patch applied. Result:"
+          echo "==================== START ===================="
+          sed -n '/define KernelPackage\/crypto-aead/,/endef/p' "$TARGET_FILE"
+          echo "===================== END ====================="
 
     - name: Load custom feeds
       run: |
