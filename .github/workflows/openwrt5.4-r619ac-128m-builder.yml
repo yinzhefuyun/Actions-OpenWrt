@@ -84,7 +84,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: Fix kmod-crypto-aead geniv build failure
-    run: |
+      run: |
         TARGET_FILE="package/kernel/linux/modules/crypto.mk"
           
         if [ ! -f "$TARGET_FILE" ]; then
