@@ -85,7 +85,7 @@ jobs:
 
     - name: Fix kmod-crypto-aead geniv build failure
       run: |
-        TARGET_FILE="package/kernel/linux/modules/crypto.mk"
+        TARGET_FILE="openwrt/package/kernel/linux/modules/crypto.mk"
           
         if [ ! -f "$TARGET_FILE" ]; then
             echo "::warning::Target file not found, skipping fix."
