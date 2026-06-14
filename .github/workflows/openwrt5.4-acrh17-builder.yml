@@ -80,8 +80,40 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
-        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/   
+        
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        
+        
+    - name: Fix kmod-crypto-aead geniv build failure
+    run: |
+        TARGET_FILE="package/kernel/linux/modules/crypto.mk"
+          
+        if [ ! -f "$TARGET_FILE" ]; then
+            echo "::warning::Target file not found, skipping fix."
+            exit 0
+        fi
+
+        echo "Patching $TARGET_FILE to remove built-in geniv.ko reference..."
+
+        sed -i '/define KernelPackage\/crypto-aead/,/endef/{
+            /CONFIG_CRYPTO_GENIV@lt6.6/d
+            /$(LINUX_DIR)\/crypto\/geniv\.ko@lt6.6/d
+        }' "$TARGET_FILE"
+
+        sed -i '/define KernelPackage\/crypto-aead/,/endef/{
+            /KCONFIG:/,/FILES:/{
+                N
+                s/\\\n\(FILES:\)/\n\1/
+                P
+                D
+            }
+        }' "$TARGET_FILE"
+
+        echo "✅ Patch applied. Printing modified crypto-aead block:"
+        echo "==================== START ===================="
+        sed -n '/define KernelPackage\/crypto-aead/,/endef/p' "$TARGET_FILE"
+        echo "===================== END ====================="
 
     - name: Load custom feeds
       run: |
