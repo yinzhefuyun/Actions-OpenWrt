@@ -506,23 +506,19 @@ CONFIG_KERNEL_GIT_CLONE_URI=""
 CONFIG_BUILD_LOG_DIR=""
 CONFIG_EXTRA_OPTIMIZATION="-fno-caller-saves -fno-plt"
 CONFIG_TARGET_OPTIMIZATION="-Os -pipe"
-# CONFIG_EXTRA_TARGET_ARCH is not set
 CONFIG_EXTRA_BINUTILS_CONFIG_OPTIONS=""
-# CONFIG_DWARVES is not set
 CONFIG_EXTRA_GCC_CONFIG_OPTIONS=""
-# CONFIG_GCC_DEFAULT_PIE is not set
-# CONFIG_GCC_DEFAULT_SSP is not set
-# CONFIG_SJLJ_EXCEPTIONS is not set
-# CONFIG_INSTALL_GFORTRAN is not set
 CONFIG_MUSL_DISABLE_CRYPT_SIZE_HACK=y
 CONFIG_GDB=y
 # CONFIG_GDB_PYTHON is not set
+CONFIG_HAS_BPF_TOOLCHAIN=y
 # CONFIG_HAS_PREBUILT_LLVM_TOOLCHAIN is not set
 CONFIG_USE_MUSL=y
 CONFIG_SSP_SUPPORT=y
 CONFIG_BINUTILS_VERSION_2_42=y
 CONFIG_BINUTILS_VERSION="2.42"
 CONFIG_GCC_VERSION="13.3.0"
+CONFIG_GCC_USE_DEFAULT_VERSION=y
 CONFIG_LIBC="musl"
 CONFIG_TARGET_SUFFIX="muslgnueabi"
 # CONFIG_IB is not set
@@ -564,6 +560,7 @@ CONFIG_PACKAGE_base-files=y
 CONFIG_PACKAGE_block-mount=y
 # CONFIG_PACKAGE_blockd is not set
 # CONFIG_PACKAGE_bridge is not set
+# CONFIG_PACKAGE_bridger is not set
 CONFIG_PACKAGE_busybox=y
 # CONFIG_BUSYBOX_CUSTOM is not set
 CONFIG_BUSYBOX_DEFAULT_HAVE_DOT_CONFIG=y
@@ -1713,6 +1710,7 @@ CONFIG_PACKAGE_procd-seccomp=y
 # CONFIG_PACKAGE_procd-selinux is not set
 CONFIG_PACKAGE_procd-ujail=y
 # CONFIG_PACKAGE_qos-scripts is not set
+# CONFIG_PACKAGE_qosify is not set
 # CONFIG_PACKAGE_refpolicy is not set
 CONFIG_PACKAGE_resolveip=y
 CONFIG_PACKAGE_rpcd=y
@@ -1888,57 +1886,109 @@ CONFIG_PACKAGE_libiwinfo-data=y
 #
 # ath10k Board-Specific Overrides
 #
+# CONFIG_PACKAGE_ipq-wifi-8devices_kiwi is not set
+# CONFIG_PACKAGE_ipq-wifi-8devices_mango is not set
+# CONFIG_PACKAGE_ipq-wifi-alfa-network_ap120c-ax is not set
 # CONFIG_PACKAGE_ipq-wifi-alibaba_ap4220 is not set
 # CONFIG_PACKAGE_ipq-wifi-aliyun_ap8220 is not set
+# CONFIG_PACKAGE_ipq-wifi-anysafe_e1 is not set
 # CONFIG_PACKAGE_ipq-wifi-arcadyan_aw1000 is not set
+# CONFIG_PACKAGE_ipq-wifi-asus_rt-ax89x is not set
 # CONFIG_PACKAGE_ipq-wifi-buffalo_wxr-5950ax12 is not set
+# CONFIG_PACKAGE_ipq-wifi-cambiumnetworks_xe34 is not set
+# CONFIG_PACKAGE_ipq-wifi-cmcc_mr3000d-ci is not set
 # CONFIG_PACKAGE_ipq-wifi-cmcc_rax3000q is not set
+# CONFIG_PACKAGE_ipq-wifi-cmcc_rm2-6 is not set
 # CONFIG_PACKAGE_ipq-wifi-compex_wpq873 is not set
 # CONFIG_PACKAGE_ipq-wifi-dptech_ap3000-2c is not set
 # CONFIG_PACKAGE_ipq-wifi-dynalink_dl-wrx36 is not set
 # CONFIG_PACKAGE_ipq-wifi-edgecore_eap102 is not set
 # CONFIG_PACKAGE_ipq-wifi-edimax_cax1800 is not set
+# CONFIG_PACKAGE_ipq-wifi-elecom_wrc-x3000gs2 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-ax1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-axt1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-glinet_gl-b3000 is not set
+# CONFIG_PACKAGE_ipq-wifi-huawei_ap4050dn is not set
+# CONFIG_PACKAGE_ipq-wifi-ignitenet_ss-w2-ac2600 is not set
+# CONFIG_PACKAGE_ipq-wifi-iodata_wn-dax3000gr is not set
 # CONFIG_PACKAGE_ipq-wifi-jdcloud_re-cs-02 is not set
 # CONFIG_PACKAGE_ipq-wifi-jdcloud_re-ss-01 is not set
+# CONFIG_PACKAGE_ipq-wifi-link_nn6000 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_homewrk is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mr5500 is not set
+# CONFIG_PACKAGE_ipq-wifi-linksys_mr6350 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mr7350 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mr7500 is not set
+# CONFIG_PACKAGE_ipq-wifi-linksys_mr9000 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx2000 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx4200 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx5300 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx5500 is not set
+# CONFIG_PACKAGE_ipq-wifi-linksys_mx6200 is not set
 # CONFIG_PACKAGE_ipq-wifi-linksys_mx8500 is not set
+# CONFIG_PACKAGE_ipq-wifi-linksys_spnmx56 is not set
+# CONFIG_PACKAGE_ipq-wifi-linksys_whw03 is not set
+# CONFIG_PACKAGE_ipq-wifi-meraki_mr30h is not set
+# CONFIG_PACKAGE_ipq-wifi-meraki_underdog is not set
+# CONFIG_PACKAGE_ipq-wifi-meraki_z3 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_lbr20 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_rax120v2 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_rbk20 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_rbk350 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_rbk40 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_rbk750 is not set
+# CONFIG_PACKAGE_ipq-wifi-netgear_sxk80 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax214 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax218 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax610 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax610y is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax620 is not set
 # CONFIG_PACKAGE_ipq-wifi-netgear_wax630 is not set
+# CONFIG_PACKAGE_ipq-wifi-philips_ly1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-prpl_haze is not set
 # CONFIG_PACKAGE_ipq-wifi-qihoo_360v6 is not set
 # CONFIG_PACKAGE_ipq-wifi-qnap_301w is not set
 # CONFIG_PACKAGE_ipq-wifi-redmi_ax5-jdcloud is not set
 # CONFIG_PACKAGE_ipq-wifi-redmi_ax6 is not set
+# CONFIG_PACKAGE_ipq-wifi-skspruce_wia3300-20 is not set
+# CONFIG_PACKAGE_ipq-wifi-spectrum_sax1v1k is not set
+# CONFIG_PACKAGE_ipq-wifi-tcl_linkhub-hh500v is not set
 # CONFIG_PACKAGE_ipq-wifi-thinkplus_fogpod800 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_archer-c59-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_archer-c6-v2 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_archer-c60-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_archer-c60-v2 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_deco-x80-5g is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap225-wall-v2 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap610-outdoor is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap620-hd-v3 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap620hd-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap623-outdoor-hd-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap625-outdoor-hd-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_eap660hd-v1 is not set
+# CONFIG_PACKAGE_ipq-wifi-tplink_tl-wa1201-v2 is not set
 # CONFIG_PACKAGE_ipq-wifi-wallys_dr40x9 is not set
+# CONFIG_PACKAGE_ipq-wifi-xiaomi_aiot-ac2350 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax3600 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax6000 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_ax9000 is not set
+# CONFIG_PACKAGE_ipq-wifi-xiaomi_redmi-ax5400 is not set
 # CONFIG_PACKAGE_ipq-wifi-xiaomi_rm1800 is not set
 # CONFIG_PACKAGE_ipq-wifi-yuncore_ax830 is not set
+# CONFIG_PACKAGE_ipq-wifi-yuncore_ax850 is not set
 # CONFIG_PACKAGE_ipq-wifi-yuncore_ax880 is not set
 # CONFIG_PACKAGE_ipq-wifi-yuncore_fap650 is not set
+# CONFIG_PACKAGE_ipq-wifi-yyets_le1 is not set
 # CONFIG_PACKAGE_ipq-wifi-zbtlink_zbt-z800ax is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf269 is not set
+# CONFIG_PACKAGE_ipq-wifi-zte_mf286ar is not set
+# CONFIG_PACKAGE_ipq-wifi-zte_mf286c is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf287 is not set
 # CONFIG_PACKAGE_ipq-wifi-zte_mf287plus is not set
 # CONFIG_PACKAGE_ipq-wifi-zyxel_nbg7815 is not set
+# CONFIG_PACKAGE_ipq-wifi-zyxel_nwa110ax is not set
+# CONFIG_PACKAGE_ipq-wifi-zyxel_nwa210ax is not set
+# CONFIG_PACKAGE_ipq-wifi-zyxel_scr50axe is not set
 # end of ath10k Board-Specific Overrides
 
 # CONFIG_PACKAGE_aeonsemi-as21xxx-firmware is not set
@@ -3340,7 +3390,6 @@ CONFIG_PACKAGE_lyaml=y
 #
 # Configuration
 #
-# CONFIG_NODEJS_12 is not set
 # CONFIG_NODEJS_14 is not set
 # CONFIG_NODEJS_16 is not set
 # CONFIG_NODEJS_18 is not set
@@ -3691,7 +3740,7 @@ CONFIG_PACKAGE_ucode-mod-uloop=y
 #
 # CONFIG_PACKAGE_libbz2 is not set
 # CONFIG_PACKAGE_liblz4 is not set
-# CONFIG_PACKAGE_liblzma is not set
+CONFIG_PACKAGE_liblzma=y
 # CONFIG_PACKAGE_libunrar is not set
 # CONFIG_PACKAGE_libzip-gnutls is not set
 # CONFIG_PACKAGE_libzip-mbedtls is not set
@@ -4381,6 +4430,7 @@ CONFIG_WOLFSSL_ALT_NAMES=y
 # CONFIG_PACKAGE_czmq is not set
 # CONFIG_PACKAGE_davici is not set
 # CONFIG_PACKAGE_dtndht is not set
+# CONFIG_PACKAGE_ell is not set
 # CONFIG_PACKAGE_getdns is not set
 # CONFIG_PACKAGE_giflib is not set
 # CONFIG_PACKAGE_glib2 is not set
@@ -4977,6 +5027,8 @@ CONFIG_PACKAGE_luci-app-cpufreq=y
 # CONFIG_PACKAGE_luci-app-cpulimit is not set
 # CONFIG_PACKAGE_luci-app-crowdsec-firewall-bouncer is not set
 # CONFIG_PACKAGE_luci-app-csshnpd is not set
+# CONFIG_PACKAGE_luci-app-dae is not set
+# CONFIG_PACKAGE_luci-app-daed is not set
 # CONFIG_PACKAGE_luci-app-dawn is not set
 # CONFIG_PACKAGE_luci-app-dcwapd is not set
 CONFIG_PACKAGE_luci-app-ddns=y
@@ -5102,7 +5154,6 @@ CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Xray=y
 # CONFIG_PACKAGE_luci-app-sshtunnel is not set
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_Iptables_Transparent_Proxy=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_Nftables_Transparent_Proxy is not set
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Client is not set
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Server is not set
@@ -5120,7 +5171,7 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Simple_Obfs is not set
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin is not set
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Server=y
 # CONFIG_PACKAGE_luci-app-statistics is not set
 # CONFIG_PACKAGE_luci-app-strongswan-swanctl is not set
 # CONFIG_PACKAGE_luci-app-syncdial is not set
@@ -5842,8 +5893,9 @@ CONFIG_PACKAGE_iptables-mod-tproxy=y
 # end of Select iptgeoip options
 
 # CONFIG_PACKAGE_miniupnpc is not set
-CONFIG_PACKAGE_miniupnpd=y
-# CONFIG_MINIUPNPD_IGDv2 is not set
+CONFIG_PACKAGE_miniupnpd-iptables=y
+# CONFIG_MINIUPNPD_IPTABLES_IGDv2 is not set
+# CONFIG_PACKAGE_miniupnpd-nftables is not set
 # CONFIG_PACKAGE_natpmpc is not set
 # CONFIG_PACKAGE_nftables-json is not set
 # CONFIG_PACKAGE_nftables-nojson is not set
@@ -6499,6 +6551,12 @@ CONFIG_PACKAGE_3proxy=y
 CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_clamav is not set
 # CONFIG_PACKAGE_cloudflared is not set
+# CONFIG_PACKAGE_dae is not set
+# CONFIG_PACKAGE_dae-geoip is not set
+# CONFIG_PACKAGE_dae-geosite is not set
+# CONFIG_PACKAGE_daed is not set
+# CONFIG_PACKAGE_daed-geoip is not set
+# CONFIG_PACKAGE_daed-geosite is not set
 # CONFIG_PACKAGE_dufs is not set
 # CONFIG_PACKAGE_e2guardian is not set
 # CONFIG_PACKAGE_etebase is not set
@@ -6544,7 +6602,7 @@ CONFIG_PACKAGE_shadowsocks-rust-ssserver=y
 CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
 # CONFIG_PACKAGE_shadowsocksr-libev-ssr-nat is not set
 CONFIG_PACKAGE_shadowsocksr-libev-ssr-redir=y
-# CONFIG_PACKAGE_shadowsocksr-libev-ssr-server is not set
+CONFIG_PACKAGE_shadowsocksr-libev-ssr-server=y
 # CONFIG_PACKAGE_sing-box is not set
 # CONFIG_PACKAGE_sockd is not set
 # CONFIG_PACKAGE_socksify is not set
@@ -6784,6 +6842,8 @@ CONFIG_PACKAGE_mihomo=y
 # CONFIG_PACKAGE_mosquitto-client-ssl is not set
 # CONFIG_PACKAGE_mosquitto-nossl is not set
 # CONFIG_PACKAGE_mosquitto-ssl is not set
+# CONFIG_PACKAGE_mptcpd is not set
+# CONFIG_PACKAGE_mptcpize is not set
 # CONFIG_PACKAGE_msd_lite is not set
 # CONFIG_PACKAGE_mstpd is not set
 # CONFIG_PACKAGE_mtr-json is not set
@@ -6818,13 +6878,6 @@ CONFIG_PACKAGE_odhcp6c=y
 CONFIG_PACKAGE_odhcp6c_ext_cer_id=0
 # CONFIG_PACKAGE_odhcpd is not set
 CONFIG_PACKAGE_odhcpd-ipv6only=y
-
-#
-# Configuration
-#
-CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
-# end of Configuration
-
 # CONFIG_PACKAGE_ola is not set
 # CONFIG_PACKAGE_omcproxy is not set
 # CONFIG_PACKAGE_onionshare-cli is not set
@@ -7036,7 +7089,7 @@ CONFIG_PACKAGE_unzip=y
 CONFIG_PACKAGE_xz-utils=y
 # CONFIG_PACKAGE_lzmadec is not set
 # CONFIG_PACKAGE_lzmainfo is not set
-# CONFIG_PACKAGE_xz is not set
+CONFIG_PACKAGE_xz=y
 # CONFIG_PACKAGE_xzdec is not set
 # CONFIG_PACKAGE_xzdiff is not set
 # CONFIG_PACKAGE_xzgrep is not set
@@ -7470,7 +7523,7 @@ CONFIG_PACKAGE_coreutils-base64=y
 # CONFIG_PACKAGE_coreutils-tail is not set
 # CONFIG_PACKAGE_coreutils-tee is not set
 # CONFIG_PACKAGE_coreutils-test is not set
-# CONFIG_PACKAGE_coreutils-timeout is not set
+CONFIG_PACKAGE_coreutils-timeout=y
 # CONFIG_PACKAGE_coreutils-touch is not set
 # CONFIG_PACKAGE_coreutils-tr is not set
 # CONFIG_PACKAGE_coreutils-true is not set
