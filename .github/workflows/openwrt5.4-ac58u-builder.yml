@@ -23,6 +23,7 @@ env:
   CONFIG_FILE: 5.4.config.ac58u
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
+  PLATFORM_SH: platform_x-wrt.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -144,6 +145,10 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+    - name: Replace platform.sh
+      run: |
+        [ -e "$PLATFORM_SH" ] && cp "$PLATFORM_SH" openwrt/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
 
     - name: Compile the firmware
       id: compile
