@@ -24,6 +24,7 @@ env:
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   PLATFORM_SH: platform_old_fix.sh
+  ATH10K_CT_MAKEFILE: ath10k-ct-firmware-Makefile
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -83,6 +84,7 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
+        [ -e "$ATH10K_CT_MAKEFILE" ] && cp $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: Fix kmod-crypto-aead geniv build failure
