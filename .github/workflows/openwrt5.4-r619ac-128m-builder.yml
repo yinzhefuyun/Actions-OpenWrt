@@ -121,11 +121,15 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        [ -e $ATH10K_CT_MAKEFILE ] && mv $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
-        cat openwrt/package/firmware/ath10k-ct-firmware/Makefile
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+        
+    - name: Replace files
+      run: |
+        [ -e "$PLATFORM_SH" ] && cp "$PLATFORM_SH" openwrt/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
+        [ -e $ATH10K_CT_MAKEFILE ] && mv $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
+        cat openwrt/package/firmware/ath10k-ct-firmware/Makefile
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a 
@@ -149,10 +153,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: Replace platform.sh
-      run: |
-        [ -e "$PLATFORM_SH" ] && cp "$PLATFORM_SH" openwrt/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
 
     - name: Compile the firmware
       id: compile
