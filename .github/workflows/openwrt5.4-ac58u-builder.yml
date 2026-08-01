@@ -129,7 +129,6 @@ jobs:
       run: |
         [ -e "$PLATFORM_SH" ] && cp "$PLATFORM_SH" openwrt/target/linux/ipq40xx/base-files/lib/upgrade/platform.sh
         [ -e $ATH10K_CT_MAKEFILE ] && mv $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
-        cat openwrt/package/firmware/ath10k-ct-firmware/Makefile
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a 
