@@ -85,9 +85,6 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        cd ..
-        [ -e $ATH10K_CT_MAKEFILE ] && cp $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
-        cat openwrt/package/firmware/ath10k-ct-firmware/Makefile
 
     - name: Fix kmod-crypto-aead geniv build failure
       run: |
@@ -124,6 +121,8 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        [ -e $ATH10K_CT_MAKEFILE ] && mv $ATH10K_CT_MAKEFILE openwrt/package/firmware/ath10k-ct-firmware/Makefile
+        cat openwrt/package/firmware/ath10k-ct-firmware/Makefile
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
