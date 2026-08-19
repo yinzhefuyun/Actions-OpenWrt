@@ -115,6 +115,23 @@ jobs:
           echo "==================== START ===================="
           sed -n '/define KernelPackage\/crypto-aead/,/endef/p' "$TARGET_FILE"
           echo "===================== END ====================="
+          # 创建补丁文件
+          cat > openwrt/package/kernel/mac80211/patches/ath10k/993-add-kstrtox-header.patch << 'EOF'
+          --- /dev/null
+          +++ b/backport-include/linux/kstrtox.h
+          @@ -0,0 +1,10 @@
+          +#ifndef _BACKPORT_LINUX_KSTRTOX_H
+          +#define _BACKPORT_LINUX_KSTRTOX_H
+          +
+          +#if LINUX_VERSION_IS_LESS(5,12,0)
+          +#include <linux/kernel.h>
+          +#else
+          +#include_next <linux/kstrtox.h>
+          +#endif
+          +
+          +#endif /* _BACKPORT_LINUX_KSTRTOX_H */
+          EOF
+
 
     - name: Load custom feeds
       run: |
