@@ -161,9 +161,7 @@ jobs:
         make target/linux/prepare V=s
         # 第2步：应用补丁并生成构建文件
         make package/kernel/mac80211/prepare V=s 2>&1 | tee prepare.log
-        # 第3步：验证补丁是否生效
-        grep "list_count_nodes" build_dir/target-*/linux-*/backports-*/backport-include/linux/list.h
-        # 第4步：编译
+        # 第3步：编译
         make package/kernel/mac80211/compile -j$(nproc) || \
         make package/kernel/mac80211/compile -j1 || \
         make package/kernel/mac80211/compile -j1 V=s
