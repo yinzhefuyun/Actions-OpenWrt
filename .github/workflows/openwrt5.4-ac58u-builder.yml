@@ -75,6 +75,7 @@ jobs:
         rm -rf target/linux/ipq40xx/
         rm -rf include/kernel-5.4
         rm -rf package/kernel/ath10k-ct/
+        rm -rf package/kernel/mac80211/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/backport-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/files-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/hack-5.4/
@@ -82,6 +83,7 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
+        git checkout 8a7860ca50b661077d199bef2550f10c74a87f78 -- package/kernel/mac80211/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Fix kmod-crypto-aead geniv build failure
@@ -115,23 +117,6 @@ jobs:
           echo "==================== START ===================="
           sed -n '/define KernelPackage\/crypto-aead/,/endef/p' "$TARGET_FILE"
           echo "===================== END ====================="
-          # 创建补丁文件
-          cat > openwrt/package/kernel/mac80211/patches/ath10k/993-add-kstrtox-header.patch << 'EOF'
-          --- /dev/null
-          +++ b/backport-include/linux/kstrtox.h
-          @@ -0,0 +1,10 @@
-          +#ifndef _BACKPORT_LINUX_KSTRTOX_H
-          +#define _BACKPORT_LINUX_KSTRTOX_H
-          +
-          +#if LINUX_VERSION_IS_LESS(5,12,0)
-          +#include <linux/kernel.h>
-          +#else
-          +#include_next <linux/kstrtox.h>
-          +#endif
-          +
-          +#endif /* _BACKPORT_LINUX_KSTRTOX_H */
-          EOF
-
 
     - name: Load custom feeds
       run: |
@@ -167,6 +152,21 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        
+    - name: Check compile kmod
+      id: check_compile
+      run: |
+        # 第1步：确保工具链和内核已准备好（只需做一次）
+        make toolchain/install V=s
+        make target/linux/prepare V=s
+        # 第2步：应用补丁并生成构建文件
+        make package/kernel/mac80211/prepare V=s 2>&1 | tee prepare.log
+        # 第3步：验证补丁是否生效
+        grep "list_count_nodes" build_dir/target-*/linux-*/backports-*/backport-include/linux/list.h
+        # 第4步：编译
+        make package/kernel/mac80211/compile -j$(nproc) || \
+        make package/kernel/mac80211/compile -j1 || \
+        make package/kernel/mac80211/compile -j1 V=s
 
     - name: Compile the firmware
       id: compile
