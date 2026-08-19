@@ -156,6 +156,7 @@ jobs:
     - name: Check compile kmod
       id: check_compile
       run: |
+        cd openwrt
         # 第1步：确保工具链和内核已准备好（只需做一次）
         make target/linux/prepare V=s
         # 第2步：应用补丁并生成构建文件
