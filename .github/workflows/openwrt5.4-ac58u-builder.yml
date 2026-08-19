@@ -157,15 +157,12 @@ jobs:
       id: check_compile
       run: |
         cd openwrt
-        # 第1步：确保工具链和内核已准备好（只需做一次）
-        make target/linux/prepare V=s
-        # 第2步：应用补丁并生成构建文件
-        make package/kernel/mac80211/prepare V=s 2>&1 | tee prepare.log
-        # 第3步：编译
+        # 完整编译工具链
+        make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
+        # 再编译 mac80211
         make package/kernel/mac80211/compile -j$(nproc) || \
-        make package/kernel/mac80211/compile -j1 || \
         make package/kernel/mac80211/compile -j1 V=s
-
+        
     - name: Compile the firmware
       id: compile
       run: |
