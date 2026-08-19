@@ -159,6 +159,7 @@ jobs:
         cd openwrt
         # 完整编译工具链
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
+        make target/linux/compile -j$(nproc) || make target/linux/compile -j1 V=s
         # 再编译 mac80211
         make package/kernel/mac80211/compile -j$(nproc) || \
         make package/kernel/mac80211/compile -j1 V=s
