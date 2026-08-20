@@ -83,7 +83,7 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/ipq40xx/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
-        git checkout 8a7860ca50b661077d199bef2550f10c74a87f78 -- package/kernel/mac80211/
+        git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Fix kmod-crypto-aead geniv build failure
