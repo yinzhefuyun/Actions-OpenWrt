@@ -149,7 +149,7 @@ jobs:
       run: |
         cd openwrt
         make defconfig
-        make download -j8
+        make download -j16
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         
@@ -158,12 +158,12 @@ jobs:
       id: check_compile
       run: |
         cd openwrt
+        echo -e "$(nproc) thread compile"
         # 完整编译工具链
         make toolchain/compile -j$(nproc) || make toolchain/compile -j1 V=s
         make target/linux/compile -j$(nproc) || make target/linux/compile -j1 V=s
         # 再编译 mac80211
-        make package/kernel/mac80211/compile -j$(nproc) || \
-        make package/kernel/mac80211/compile -j1 V=s
+        make package/kernel/mac80211/compile -j$(nproc) || make package/kernel/mac80211/compile -j1 V=s
         
     - name: Compile the firmware
       id: compile
