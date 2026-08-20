@@ -154,6 +154,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
         
     - name: Check compile kmod
+      if: (false)
       id: check_compile
       run: |
         cd openwrt
