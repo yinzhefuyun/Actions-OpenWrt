@@ -46,9 +46,9 @@ jobs:
         sudo docker image prune --all --force
         sudo add-apt-repository -y universe
         sudo add-apt-repository -y multiverse
-        sudo -E apt -qq update -y
-        sudo -E apt -qq full-upgrade -y
-        sudo -E apt -qq install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
+        sudo -E apt -qq -o APT::Acquire::http::Parallel=16 update -y
+        sudo -E apt -qq -o APT::Acquire::http::Parallel=16 install -y \
+        ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
         bzip2 ccache clang cmake cpio curl device-tree-compiler flex gawk gcc-multilib g++-multilib gettext \
         genisoimage git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libfuse-dev libglib2.0-dev \
         libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libpython3-dev \
