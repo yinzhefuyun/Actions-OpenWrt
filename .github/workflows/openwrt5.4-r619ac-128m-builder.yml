@@ -76,6 +76,7 @@ jobs:
         rm -rf include/kernel-5.4
         rm -rf package/kernel/ath10k-ct/
         rm -rf package/kernel/mac80211/
+        rm -rf package/network/config/netifd/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/backport-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/files-5.4/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- target/linux/generic/hack-5.4/
@@ -84,6 +85,7 @@ jobs:
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- include/kernel-5.4
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/ath10k-ct/
         git checkout 61d090cddb5d0949c3a4d5c4639e5bb19a3a4bed -- package/kernel/mac80211/
+        git checkout faf775a7692ed4cf2f885a0b20a49a76b5ac84b0 -- package/network/config/netifd/
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: Fix kmod-crypto-aead geniv build failure
@@ -179,15 +181,25 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
-        tree  -h
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "status=success" >> $GITHUB_OUTPUT
-        echo "config.buildinfo"
-        cat config.buildinfo
-        echo "profiles.json"
-        cat profiles.json
+          cd openwrt/bin/targets/*/*
+          tree -h
+          rm -rf packages
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "status=success" >> $GITHUB_OUTPUT
+          
+          if [ -f config.buildinfo ]; then
+            echo "=== config.buildinfo ==="
+            cat config.buildinfo
+          else
+            echo "⚠️ config.buildinfo not found"
+          fi
+          
+          if [ -f profiles.json ]; then
+            echo "=== profiles.json ==="
+            cat profiles.json
+          else
+            echo "⚠️ profiles.json not found"
+          fi
 
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
