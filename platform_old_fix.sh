@@ -126,10 +126,15 @@ asus_nand_upgrade_factory() {
 	ubi_kill_if_exist linux
 
 	ubimkvol /dev/$ubidev -N linux -s $kpart_size
+	ubimkvol /dev/$ubidev -N linux2 -s $kpart_size
+	ubimkvol /dev/$ubidev -N jffs2 -m
 
 	local kern_ubivol="$(nand_find_volume $ubidev $CI_KERNPART)"
 	echo "Asus linux at $kern_ubivol.Writing..."
 	ubiupdatevol /dev/$kern_ubivol --skip=64 $fw_file
+	local kern2_ubivol="$(nand_find_volume $ubidev linux2)"
+	echo "Asus linux2 at $kern2_ubivol.Writing..."
+	ubiupdatevol /dev/$kern2_ubivol --skip=64 $fw_file
 	echo "Done."
 
 	umount -a
@@ -265,7 +270,7 @@ platform_do_upgrade() {
 		CI_KERNPART="linux"
 		if [ "$magic" == "27051956" ]; then
 			echo "Got Asus factory image."
-			asus_nand_upgrade_factory 50409472 "$1"
+			asus_nand_upgrade_factory 41943040 "$1"
 		else
 			asus_nand_upgrade_tar 6291456 "$1"
 		fi
